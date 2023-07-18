@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "compra",
+            "request": "launch",
+            "mainClass": "compra",
+            "projectName": "Airplane-reserve_c8d54f2e"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
