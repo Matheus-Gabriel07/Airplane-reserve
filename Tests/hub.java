@@ -1,34 +1,34 @@
+package Tests;
 import java.util.*;
 
 public class hub {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
+
         /* Variáveis */
-        boolean continue; 
-        int ID = 0;
+        boolean continuar = true;
         String aeroportoName = "default";
         String vooTrack = "default";
-        
+
         /* Aeroportos e voos */
         String[] aeroportosName = { "Guarulhos", "Congonhas", "Campinas", "Fotaleza" };
         ArrayList<String> airport = new ArrayList<String>(Arrays.asList(aeroportosName));
-        
+
         String[] voosGru = { "GRU -> Penha/SC", "GRU -> Fortaleza", "GRU -> RJ", "GRU -> Gramado" };
         ArrayList<String> vooGru = new ArrayList<String>(Arrays.asList(voosGru));
-        
+
         String[] voosCong = { "CON -> Penha/SC", "CON -> Fortaleza", "CON -> RJ", "CON -> Gramado" };
         ArrayList<String> vooCong = new ArrayList<String>(Arrays.asList(voosCong));
-        
+
         String[] voosCamp = { "CAM -> Penha/SC", "CAM -> Fortaleza", "CAM -> RJ", "CAM -> Gramado" };
         ArrayList<String> vooCamp = new ArrayList<String>(Arrays.asList(voosCamp));
-        
+
         String[] voosFort = { "FOR -> Penha/SC", "FOR -> Fortaleza", "FOR -> RJ", "FOR -> Gramado" };
         ArrayList<String> vooFort = new ArrayList<String>(Arrays.asList(voosFort));
-        
+
         /* Main */
         do {
-            
+
             System.out.println("O que deseja fazer? \n" +
                     "(1) Comprar\n" +
                     "(2) Reservar");
@@ -154,16 +154,34 @@ public class hub {
                         break;
                 }
 
-                System.out.println("Escolha o seu assento");
-                System.out.println();
-                int opcAssento = sc.nextInt();
+                System.out.println("Deseja fazer a reserva? \n" +
+                        "(1) Sim\n" +
+                        "(2) Não");
+                opc = sc.nextInt();
 
-                System.out.println("== ID: " + ID + "== \n" +
-                        "VOO: " + vooTrack + "\n" +
-                        "HORÁRIO: " + "\n" +
-                        "AEROPORTO: " + aeroportoName + "\n" +
-                        "ASSENTO: " + opcAssento + "\n");
+                if (opc == 1) {
+                    System.out.println("Escolha o seu assento");
+                    int opcAssento = sc.nextInt();
+
+                    System.out.println("Informe o ID de reserva");
+                    int IDreseva = sc.nextInt();
+    
+                    System.out.println("== ID: " + IDreseva + "== \n" +
+                            "VOO: " + vooTrack + "\n" +
+                            "HORÁRIO: 18:00" + "\n" +
+                            "AEROPORTO: " + aeroportoName + "\n" +
+                            "ASSENTO: " + opcAssento + "\n");
+                } else if (opc == 2){
+                    System.out.println("Informe o ID de reserva");
+                    int IDreseva = sc.nextInt();
+                     System.out.println("== ID: " + IDreseva + "== \n" +
+                            "VOO: " + vooTrack + "\n" +
+                            "HORÁRIO: 18:00" + "\n" +
+                            "AEROPORTO: " + aeroportoName + "\n");
+                }
             }
+
+            /* Reserva */
 
             if (op == 2) {
                 System.out.println("Já fex a reserva? \n" +
@@ -171,14 +189,28 @@ public class hub {
                         "(2) Não");
                 int opc = sc.nextInt();
 
+                /* Já fez a reserva */
                 if (opc == 1) {
-                    System.out.println("== ID: " + ID + "== \n" +
-                            "VOO: " + vooTrack + "\n" +
-                            "HORÁRIO: " + "\n" +
-                            "AEROPORTO: " + aeroportoName + "\n");
+                    System.out.println("Informe o ID de reserva");
+                    int IDreseva = sc.nextInt();
+                    int sizeId = IDreseva.charAt();
+
+                    if (sizeId >= 9) {
+                        System.out.println("== ID: " + IDreseva + "== \n" +
+                                "VOO: " + vooTrack + "\n" +
+                                "HORÁRIO: " + "\n" +
+                                "AEROPORTO: " + aeroportoName + "\n");
+                    } else if (sizeId < 9) {
+                        System.out.println("ID invalido, tente novamente");
+                    }
                 }
 
+                /* Não fez a reserva */
+
                 if (opc == 2) {
+                    System.out.println("Informe o ID de reserva");
+                    int IDreseva = sc.nextInt();
+
                     System.out.println("Escolha seu aeroporto");
                     int n = airport.size();
                     for (String str : airport) {
@@ -300,13 +332,24 @@ public class hub {
                     System.out.println();
                     int opcAssento = sc.nextInt();
 
-                    System.out.println("== ID: " + ID + "== \n" +
+                    System.out.println("== ID: " + IDreseva + "== \n" +
                             "VOO: " + vooTrack + "\n" +
                             "HORÁRIO: " + "\n" +
                             "AEROPORTO: " + aeroportoName + "\n" +
                             "ASSENTO: " + opcAssento + "\n");
+
+                    System.out.println("Deseja comprar mais alguma reserva? \n" +
+                            "(1) Sim\n" +
+                            "(2) Não");
+                    opc = sc.nextInt();
+
+                    if (opc == 2) {
+                        continuar = false;
+                    } else {
+                        continuar = true;
+                    }
                 }
             }
-        } while(continue = false);
+        } while (continuar = false);
     }
 }

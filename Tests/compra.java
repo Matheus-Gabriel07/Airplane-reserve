@@ -1,3 +1,4 @@
+package Tests;
 import java.util.*;
 
 public class compra {
